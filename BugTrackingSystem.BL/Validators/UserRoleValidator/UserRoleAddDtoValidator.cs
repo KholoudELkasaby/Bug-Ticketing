@@ -35,7 +35,7 @@ public class UserRoleAddDtoValidator : AbstractValidator<UserRoleAddDto>
 
     private async Task<bool> ValidateUserAndRoleExist(UserRoleAddDto dto, CancellationToken cancellationToken)
     {
-        var user = await _unitWork.UserRoleRepository
+        var user = await _unitWork.UserRepository
             .GetByIdAsync(dto.UserId);
         var role = await _unitWork.RoleRepository
             .GetByIdAsync(dto.RoleId);

@@ -16,7 +16,7 @@ namespace BugTrackingSystem.Controllers
             _userRoleManager = userRoleManager;
         }
         [HttpPost]
-        [Authorize(Policy = Constants.Policies.Admin)]
+       // [Authorize(Policy = Constants.Policies.Admin)]
         public async Task<Results<Ok<GeneralResult>, BadRequest<GeneralResult>>> AddUserRole([FromBody] UserRoleAddDto userRoleAddDto)
         {
             var response = await _userRoleManager.AddUserRoleAsync(userRoleAddDto);
@@ -47,7 +47,7 @@ namespace BugTrackingSystem.Controllers
             }
         }
         [HttpDelete]
-        [Authorize(Policy = Constants.Policies.Admin)]
+       // [Authorize(Policy = Constants.Policies.Admin)]
         public async Task<Results<Ok<GeneralResult>, BadRequest<GeneralResult>>> RemoveRoleFromUser([FromBody] UserRoleRemoveDto userRoleRemoveDto)
         {
             var response = await _userRoleManager
