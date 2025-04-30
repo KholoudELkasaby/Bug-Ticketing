@@ -1,0 +1,47 @@
+﻿using BugTrackingSystem.DAL;
+using FluentValidation;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BugTrackingSystem.BL;
+
+public class AddBugDtoValidator : AbstractValidator<BugAddDto>
+{
+    private IUnitWork _unitWork;
+    public AddBugDtoValidator(
+        IUnitWork unitWork
+        )
+    {
+        _unitWork = unitWork;
+        RuleFor(x => x.Title)
+            .NotEmpty()
+            .WithMessage("Title is required.")
+            .MaximumLength(100)
+            .WithMessage("Title must not exceed 100 characters.");
+        RuleFor(x => x.Description)
+            .NotEmpty()
+            .WithMessage("Description is required.")
+            .MaximumLength(500)
+            .WithMessage("Description must not exceed 500 characters.");
+        RuleFor(x => x.Priority)
+            .IsInEnum()
+            .WithMessage("Priority must be a valid enum value.");
+        RuleFor(x => x.Status)
+            .IsInEnum()
+            .WithMessage("Status must be a valid enum value.");
+        RuleFor(x => x.ProjectId)
+            .NotEmpty()
+            .WithMessage("ProjectId is required.")
+            .MustAsync(BeValidProjectId)
+            .WithMessage("ProjectId is not found.");
+    }
+    private async Task<bool> BeValidProjectId(Guid projectId, CancellationToken cancellationToken)
+    {
+        var project = await _unitWork.ProjectRepository
+            .GetByIdAsync(projectId);
+        return project != null;
+    }
+}
