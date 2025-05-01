@@ -231,7 +231,7 @@ Common HTTP status codes:
 ### ⚙️ Setup Instructions
 1. Clone the repository:
    ```bash
-    git clone https://github.com/Ereh11/Bug-Ticketing-System.git](https://github.com/KholoudELkasaby/Bug-Ticketing.git   
+    git clone https://github.com/KholoudELkasaby/Bug-Ticketing.git   
    ```
 2. Update database connection string in `appsettings.json`
 3. Run database migrations:
