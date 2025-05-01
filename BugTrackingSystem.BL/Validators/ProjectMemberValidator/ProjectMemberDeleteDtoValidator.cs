@@ -32,7 +32,7 @@ namespace BugTrackingSystem.BL
         {
             var project = await _unitWork.ProjectRepository.GetByIdAsync(dto.ProjectId);
             var user = await _unitWork.UserRepository.GetByIdAsync(dto.UserId);
-            return project != null && user != null;
+            return !(project == null || user == null);
         }
 
         private async Task<bool> ValidateUserIsMember(ProjectMemberRemoveDto dto, CancellationToken cancellationToken)

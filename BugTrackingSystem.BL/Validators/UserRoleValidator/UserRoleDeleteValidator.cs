@@ -33,7 +33,7 @@ public class UserRoleDeleteValidator : AbstractValidator<UserRoleRemoveDto>
             .GetByIdAsync(dto.UserId);
         var role = await _unitWork.RoleRepository
             .GetByIdAsync(dto.RoleId);
-        return user != null && role != null;
+        return !(user == null || role == null);
     }
 
     private async Task<bool> ValidateUserRoleNotDuplicate(UserRoleRemoveDto dto, CancellationToken cancellationToken)
