@@ -1,5 +1,5 @@
 
-```markdown
+
 # 🐞 Bug Ticketing System
 
 A comprehensive ticket management platform built with ASP.NET Core Web API for efficient bug tracking and resolution.
@@ -247,5 +247,4 @@ Common HTTP status codes:
    - http://localhost:5000
 
 ## 📄 License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-```
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
